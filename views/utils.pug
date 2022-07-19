@@ -1,0 +1,15 @@
+mixin validationErrorSummary(errors)
+  if errors
+    div(id='error-div')
+      p(id='error-p') The following error(s) occurred:
+      ul(id='error-ul')
+        each error in errors
+          li= error
+
+mixin field(labelText, fieldName, fieldValue, fieldType = 'text', placeholder = null)
+  div
+    label(for=fieldName)&attributes(attributes)= labelText
+    if fieldType === 'textarea'
+      textarea(id=fieldName name=fieldName rows='5')&attributes(attributes)= fieldValue
+    else
+      input(type=fieldType id=fieldName name=fieldName value=fieldValue placeholder=placeholder)&attributes(attributes)

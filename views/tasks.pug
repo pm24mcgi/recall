@@ -1,0 +1,35 @@
+extends layout.pug
+
+include utils.pug
+include task-detail.pug
+block content
+  +validationErrorSummary(errors)
+  .errors-container
+  div(class='top-display')
+    div(class='first-box')
+      div(class='create-task')
+        include task-create-form
+  div(class='main-display')
+    div(class='second-box box')
+      p(class='column-titles' id='second-column-titles') My Lists
+      include lists.pug
+    div(class='third-box box')
+        p(class='column-titles' id='task-title') To Do
+        include search-form.pug
+        div(class='display-tasks')
+        ul(id='all-task-list')
+          each task in tasks
+            div(id=`list-item-${task.id}` class='task-item')
+              div(class='inner-list-item')
+                span(class="material-symbols-outlined task-bullets") atr
+                li(class='tasks' id=`task-${task.id}`)= task.content
+              div(class='done-check')
+                label(class='done-label') done?
+                if (task.completed === true)
+                  input(type='checkbox' name='completed' class='task-checkbox' id=`checkbox-${task.id}` checked)
+                else
+                  input(type='checkbox' name='completed' class='task-checkbox' id=`checkbox-${task.id}`)
+            +editField(task)
+    div(class='fourth-box box' id='right-image')
+      img(src='/img/RECALL.gif', alt='logo' id='homeImg' class='homeImg')
+  div(id='footer')

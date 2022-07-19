@@ -1,0 +1,20 @@
+extends layout.pug
+
+include utils.pug
+block content
+  a(href='/')
+    div(id='loginGrey')
+  div(id='loginBlock')
+    div(id='loginFields')
+      +validationErrorSummary(errors)
+      form(method='post' action='/login')
+        div(id='loginForm')
+          input(type='hidden' name='_csrf' value=csrfToken)
+          div(class="login-div")
+            +field('Email', 'emailAddress', '', 'email')(class='field-text2')
+          div(class="login-div")
+            +field('Password', 'password', '', 'password')(class='field-text2')
+          div(class="login-div3")
+          button(type='submit' class="button-49") Log In
+      a(href='/signup' class='no-account-text') Don't have an account? Sign up!
+    img(src="/img/RECALL4.png", alt="logo.gif" id='loginImg')

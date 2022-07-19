@@ -1,0 +1,31 @@
+include utils.pug
+block content
+  form(action="/lists", method="post" autocomplete='off' id='lists-home')
+    input(type="hidden" name="_csrf" value=csrfToken)
+    //- label List Name:
+    input(type="text" name="name" placeholder='Create New List...' class='home-inputs')
+    button(type="submit" class='home-buttons button-49' id='submit-list-id') Submit
+    br
+    .all-tasks-link
+      a(href='/tasks' class='all-tasks-link-text') View all of My Tasks
+  ul(id='list-display-home')
+    each list in lists
+      div(class='list-item div-container' id=`list-container-${list.id}`)
+        li(class='lists' id=`name-${list.id}`)= list.name
+        span(class="material-symbols-outlined edit-lists-btn" id=`edit-lists-${list.id}`) edit
+        div(class='deleteLists-btn')
+        span(class="material-symbols-outlined deleteLists-btn" id=`deleteLists-${list.id}`) delete
+        div(class='edit-form' id=`div-list-form-${list.id}`)
+          form(class="edit-forms hidden" id=`edit-form-${list.id}` autocomplete='off')
+            //- label New List Name:
+            div(class='list-edit-form')
+              input(type="text", name="name" value=list.name id=`${list.id}-edit-name` class='home-inputs')
+              span(class="material-symbols-outlined" id=`edit-submit-${list.id}`) done
+              span(class="material-symbols-outlined" id=`cancel-submit-${list.id}`) close
+            //- button(id=`edit-submit-${list.id}` class='hidden')
+
+
+        //- div(id=`list-container-${list.id}` class='div-container')
+        //-   //- a(href=`/lists/${list.id}/tasks` id=`${list.id}-name`)=list.name
+        //-   button(class='deleteLists-btn' id=`deleteLists-${list.id}`) Delete
+        //-   button(class='edit-lists-btn' id=`edit-lists-${list.id}`) Edit

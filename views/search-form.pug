@@ -1,0 +1,9 @@
+form(id='search' autocomplete="off")
+  input(type='search' placeholder='Search your tasks...' name='name' class='searchbar home-inputs' onkeypress="return event.keyCode != 13;")
+  //- button(type='submit' class='searchbarBtn') Search
+  div
+    ul
+      if (tasks)
+        each task in tasks
+          div
+            li(class=`task hidden`)= task.content
