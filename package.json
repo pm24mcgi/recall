@@ -1,6 +1,6 @@
 {
   "name": "express-project-starter",
-  "version": "16.15.0",
+  "version": "0.0.0",
   "private": true,
   "scripts": {
     "start": "per-env",
@@ -29,5 +29,10 @@
     "dotenv": "^8.2.0",
     "dotenv-cli": "^4.0.0",
     "nodemon": "^2.0.6"
+  },
+  "production": {
+    "dialect": "postgres",
+    "seederStorage": "sequelize",
+    "use_env_variable": "DATABASE_URL"
   }
 }
